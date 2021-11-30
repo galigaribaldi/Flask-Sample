@@ -1,0 +1,38 @@
+{% extends 'layout/base.html' %}{% block container %}
+<h3>{{ products['name'] }}</h3>
+<p>{{ products['category'] }}</p>
+<p>${{ products['Price'] }}</p>
+<p>Filtro default: {{ products['price'] | default('Sin Precio', True)}}</p>
+<!--Cuidado con este mecanismo, ya que puedes inyectar código JavAscript-->
+{{ "
+<h1>Hola mundo</h1>" | safe }}
+<br>
+<!--Filtro Truncate-->
+Truncar: {{ "Esta es la descripción de un producto bastante Chulo" | truncate(23) }}
+<br>
+<!--Contar caracteres-->
+Contar caracteres: {{ "Esta es la descripción de un producto bastante Chulo" | count }}
+<br>
+<!--Float-->
+Filtro Float: {{ "70.6" | float }}
+<br>
+<!--int-->
+Filtro Int: {{ "70.6" | int }}
+<!--Redondear-->
+<br>Redondear {{ 3.145131221 | round(3)}}
+<br>
+<!--Join-->
+Join: {{ ["iPhone", "iPad"] | join(", ") }}
+<br>
+<!--Length-->
+Length: {{ ["iPhone", "iPad"] | length }}
+<br>
+<!--Json-->
+Json: {{ {'offer': False, 'price': 50.5, 'k': 45} | tojson }}
+<br>
+<!--Filtro Glboal-->
+Filtro Global: {{ 300 | mydouble }}
+<br>
+<!--Filtro Local-->
+Filtro Local: {{ products | iva }}
+<br> {% endblock %}
