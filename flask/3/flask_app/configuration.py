@@ -1,5 +1,11 @@
 class BaseConfig(object):
-    'Base configuracion'
+    """Baseconfig
+
+    Parameters
+    ----------
+    object : [type]
+        [description]
+    """
     SECRET_KEY = 'Key'
     DEBUG = True
     TESTING = False
