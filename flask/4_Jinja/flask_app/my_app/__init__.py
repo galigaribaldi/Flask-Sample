@@ -1,9 +1,14 @@
 from flask import Flask
-from my_app.product.views import product
-#from my_app.hello2.views import hello
+from flask_sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
 
+app.config.from_object('configuration.DevelopmentConfig')
+db = SQLAlchemy(app)
+
+from my_app.product.views import product
 app.register_blueprint(product)
+db.create_all()
 
 ## Registrar filtros
 @app.template_filter('mydouble')
