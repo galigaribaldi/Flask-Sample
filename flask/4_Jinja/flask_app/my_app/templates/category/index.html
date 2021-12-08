@@ -4,17 +4,16 @@
 <!--Extends-->
 {% block container %}
 <br>
-<a class="btn btn-primary mt-2 mb-2" href="{{ url_for('product.create') }}"><i class="fa fa-plus"></i> Crear</a>
-<br>{% for product in products.items %}
+<a class="btn btn-primary mt-2 mb-2" href="{{ url_for('category.create') }}"><i class="fa fa-plus"></i> Crear</a>
+<br>{% for category in categories.items %}
 <div class="card {{ loop.cycle('odd','even') }} mt-4">
     <div class="card-body pb-2 pt-3">
         <h3>
-            <a href="{{ url_for('product.show', id=product['id']) }}">{{ product['name'] }}</a>
+            <a href="{{ url_for('category.show', id=category['id']) }}">{{ category['name'] }}</a>
         </h3>
-        <h5>{{ product['category'].name }}</h5>
-        <a data-bs-toogle="tooltip" class="btn btn-success btn-sm" href="{{ url_for('product.update', id=product['id']) }}"> <i data-bs-toggle="tooltip" class="fa fa-edit"></i> Editar</a>
+        <a data-bs-toogle="tooltip" class="btn btn-success btn-sm" href="{{ url_for('category.update', id=category['id']) }}"> <i data-bs-toggle="tooltip" class="fa fa-edit"></i> Editar</a>
 
-        <button data-toggle="modal" data-target="#deleteModal" data-name="{{ product['name'] }}" data-id="{{product['id']}}" class="btn btn-danger btn-sm" href="{{ url_for('product.delete', id=product['id']) }}"><i data-toggle="tooltip"  title="Eliminar producto {{ product['name'] }}" data-bs-placement="top"class="fa fa-trash"></i></button>
+        <button data-toggle="modal" data-target="#deleteModal" data-name="{{ category['name'] }}" data-id="{{category['id']}}" class="btn btn-danger btn-sm" href="{{ url_for('category.delete', id=category['id']) }}"><i data-toggle="tooltip"  title="Eliminar categoryo {{ category['name'] }}" data-bs-placement="top"class="fa fa-trash"></i></button>
         <!--Index-->
         <!--{{ loop.index }}-->
         <!--Cual es el primero-->
@@ -23,7 +22,7 @@
         <!--{{ loop.cycle('impar','par') }}-->
     </div>
 </div>
-{% endfor %} <br>{{ m_pagination(products) }}
+{% endfor %} <br>{{ m_pagination(categories) }}
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -54,7 +53,7 @@
             var modal = $(this)
             modal.find('.modal-title span').text(name)
 
-            $("#deleteProduct").attr("href", "/product-delete/" + id)
+            $("#deleteProduct").attr("href", "/category-delete/" + id)
 
 
         })

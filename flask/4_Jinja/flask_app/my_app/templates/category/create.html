@@ -3,8 +3,8 @@
 <!--Extends-->
 {% block container %}
 
-<form action="{{ url_for('product.create') }}" method="POST">
-    {% include 'product/_form.html' %}
+<form action="{{ url_for('category.create') }}" method="POST">
+    {% include 'category/_form.html' %}
     <input class="btn btn-primary" type="submit" value="Enviar">
 </form>
 {% endblock %}

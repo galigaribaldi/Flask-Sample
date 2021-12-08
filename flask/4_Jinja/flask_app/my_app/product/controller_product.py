@@ -6,6 +6,7 @@ from sqlalchemy.sql.elements import not_
 from my_app import db
 from my_app.product.model.products import PRODUCTS
 from my_app.product.model.product import Product
+from my_app.product.model.category import Category
 from my_app.product.model.product import ProductForm
 product = Blueprint('product',__name__)
 
@@ -77,8 +78,15 @@ def test3():
 @product.route('/product-create', methods = ('GET', 'POST'))
 def create():
     form = ProductForm(meta={'csrf':False})
+    ###Opciones de relaciones
+    categories = [(c.id, c.name) for c in Category.query.all()]
+    print("\n\n\n",categories)
+    form.category_id.choices = categories
+    
     if form.validate_on_submit():
-        p = Product(request.form['name'],request.form['price'], request.form['Id'])
+        
+        print("Name:", request.form['name'],"precio: ",request.form['price'], "ID:", request.form['Id'],"Categoria: ",request.form['category_id'])
+        p = Product(request.form['name'],request.form['price'], request.form['Id'],request.form['category_id'])
         db.session.add(p)
         db.session.commit()
         flash("Producto creado con exito")
@@ -100,14 +108,17 @@ def insert():
 def update(id):
     product = Product.query.get_or_404(id)
     form = ProductForm(meta={'csrf':False})
+    categories = [(c.id, c.name) for c in Category.query.all()]
+    form.category_id.choices = categories
     if request.method == 'GET':
         form.name.data = product.name
-        form.price.data = product.price
-    
+        form.category_id.data = product.category_id
+        form.Id.data =id
     if form.validate_on_submit():
         ##Actualizar
         product.name =form.name.data
-        product.price = form.price.data
+        #product.price = form.price.data
+        product.category_id = form.category_id.data
         db.session.add(product)
         db.session.commit()
         flash("Producto Actualizado con exito")

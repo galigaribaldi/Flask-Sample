@@ -1,5 +1,18 @@
-{{ form.name.label }} {{ form.name }}
+<div class="form-group">
+    {{ form.name.label }}
+    <!---->
+    {{ form.name(class="form-control") }}
+</div>
+
 <!---->
-{{ form.price.label }} {{ form.price }}
+<div class="mb-3">
+    {{ form.price.label }} {{ form.price(class="form-control") }}
+</div>
 <!---->
-{{ form.Id.label }} {{ form.Id }}
+<div class="form-group">
+    {{ form.Id.label }} {{ form.Id(class="form-control") }}
+</div>
+<!---->
+<div class="form-group">
+    {{ form.category_id.label }} {{ form.category_id(class="form-control") }}
+</div>
