@@ -1,0 +1,28 @@
+{% extends 'layout/base.html' %}
+
+<!--Extends-->
+{% block container %}
+<br>
+<h1>Registro Nuevo usuario</h1>
+<br>
+<form action="{{ url_for('auth.register') }}" method="POST">
+    <div class="form-group">
+        {{ form.name.label }}
+        <!---->
+        {{ form.name(class="form-control") }}
+    </div>
+
+    <!---->
+    <div class="mb-3">
+        {{ form.password.label }} {{ form.password(class="form-control") }}
+    </div>
+    <!---->
+    <div class="form-group">
+        {{ form.Id.label }} {{ form.Id(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.confirm.label }} {{ form.confirm(class="form-control") }}
+    </div>
+    <input class="btn btn-primary" type="submit" value="Enviar">
+</form>
+{% endblock %}
