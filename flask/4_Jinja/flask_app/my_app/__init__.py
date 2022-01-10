@@ -25,6 +25,10 @@ from my_app.product.controller_category import category
 #from my_app.auth.views_controller import auth
 from my_app.fauth.views_controller import fauth
 
+##rest
+from my_app.rest_api.product_api import product_view
+from my_app.rest_api.category_api import category_view
+
 app.register_blueprint(product)
 app.register_blueprint(category)
 #app.register_blueprint(auth)
